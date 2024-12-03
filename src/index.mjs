@@ -74,13 +74,14 @@ sock.on(events.DISCONNECT, (data) => {
 
 sock.on(events.CONNECT_ERROR, (data) => {
   console.log("failed to connect:", data.message, data.description?.message ?? data.description);
-  console.log(data);
 
   let desc = data.description?.message;
   if (data.description != null && typeof data.description !== "object") desc = data.description.toString();
 
   if (data.message.toLowerCase() === "banned") {
     console.log("banned o7");
+    process.exit(1);
+  } else if (data.message.toLowerCase() === "no user") {
     process.exit(1);
   } else if (desc?.includes("403")) {
     process.exit(1);
