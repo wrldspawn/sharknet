@@ -81,7 +81,7 @@ sock.on(events.CONNECT_ERROR, (data) => {
   if (data.message.toLowerCase() === "banned") {
     console.log("banned o7");
     process.exit(1);
-  } else if (data.message.toLowerCase() === "no user") {
+  } else if (data.message.toLowerCase() === "no user" || data.message === "timeout") {
     process.exit(1);
   } else if (desc?.includes("403")) {
     process.exit(1);
