@@ -118,10 +118,10 @@ export default function setup(config, socket) {
     console.log("Goal Updated:", data);
   });
   socket.on(events.GOAL_REMOVED, (data) => {
-    post({
+    /*post({
       username: "Fishtank : Goal Removed",
       content: `Goal **${data.name}** removed.`,
-    });
+    });*/
 
     console.log("Goal Removed:", data);
   });
