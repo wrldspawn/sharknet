@@ -99,19 +99,47 @@ export default function setup(config, socket) {
     console.log("Feature Toggle:", data);
   });
 
+  socket.on(events.GOAL_CREATED, (data) => {
+    post({
+      username: "Fishtank : Goal Created",
+      content: `**${data.name}**\n${data.description}\n\n₣${data.tokensRequired}${data.expiresAt > 0 ? `\nExpires: <t:${Math.floor(data.expiresAt / 1000)}>` : ""}`,
+    });
+
+    console.log("Goal Created:", data);
+  });
+  socket.on(events.GOAL_UPDATED, (data) => {
+    if (data.status === "complete") {
+      post({
+        username: "Fishtank : Goal Updated",
+        content: `Goal **${data.name}** completed.`,
+      });
+    }
+
+    console.log("Goal Updated:", data);
+  });
+  socket.on(events.GOAL_REMOVED, (data) => {
+    post({
+      username: "Fishtank : Goal Removed",
+      content: `Goal **${data.name}** removed.`,
+    });
+
+    console.log("Goal Removed:", data);
+  });
+
+  socket.on(events.CONTESTANT_NEW, (data) => {
+    console.log("new contestant:", data);
+  });
+  socket.on(events.CONTESTANT_UPDATE, (data) => {
+    console.log("contestant update:", data);
+  });
+  socket.on(events.CONTESTANT_REMOVE, (data) => {
+    console.log("contestant removed:", data);
+  });
+
   socket.on(events.HAPPENING, (data) => {
     console.log("happening:", data);
   });
   socket.on(events.PANEL_CHANGE, (data) => {
     console.log("panel change:", data);
-  });
-  socket.on(events.GOAL_CREATED, (data) => {
-    console.log("goal created:", data);
-  });
-  socket.on(events.GOAL_UPDATED, (data) => {
-    console.log("goal updated:", data);
-  });
-  socket.on(events.GOAL_REMOVED, (data) => {
-    console.log("goal removed:", data);
   });
 }
