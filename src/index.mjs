@@ -70,6 +70,9 @@ sock.on(events.CONNECT, () => {
 
 sock.on(events.DISCONNECT, (data) => {
   console.log("disconnected:", data);
+  if (data === "io server disconnect") {
+    process.exit(1);
+  }
 });
 
 sock.on(events.CONNECT_ERROR, (data) => {

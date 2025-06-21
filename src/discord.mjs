@@ -27,7 +27,7 @@ export default function setup(config, socket) {
 
     post({
       username: "Fishtank : Production Message",
-      content: message,
+      content: `${header != null ? `**${header}**\n` : ""}${message}`,
     });
 
     console.log("Production Message:", message, header);
@@ -61,7 +61,7 @@ export default function setup(config, socket) {
 
   socket.on(events.POLL_START, (data) => {
     post({
-      username: "Fishtank : Poll Started",
+      username: `Fishtank : ${data.poll.narative ? "Narative " : ""}Poll Started`,
       content: `**${data.poll.question}**\n${data.poll.answers.join("\n")}`,
     });
 
