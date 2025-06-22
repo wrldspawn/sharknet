@@ -89,6 +89,7 @@ export default function setup(config, socket) {
     tts: "TTS",
     wartoys: "Wartoys",
     "drone-cam": "Drone Cam",
+    stocks: "StoX",
   };
   socket.on(events.FEATURE_TOGGLES_UPDATED, (data) => {
     post({
